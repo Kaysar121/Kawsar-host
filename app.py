@@ -71,7 +71,7 @@ def keep_alive():
 TOKEN = '8589486018:AAGAen7br2gt8_sGz1SnVXSjQq8kPelyIEM'  # 𝐑𝐞𝐩𝐥𝐚𝐜𝐞 𝐰𝐢𝐭𝐡 𝐲𝐨𝐮𝐫 𝐚𝐜𝐭𝐮𝐚𝐥 𝐭𝐨𝐤𝐞𝐧
 OWNER_ID = 5957710220
 ADMIN_ID = 8102986058
-YOUR_USERNAME = '@Kawsar'
+YOUR_USERNAME = '@Kawsar9340'
 UPDATE_CHANNEL = 'https://t.me/kawsar93400'
 UPDATE_GROUP = 'https://t.me/kawsar9340'  # 𝐍𝐞𝐰 𝐮𝐩𝐝𝐚𝐭𝐞 𝐠𝐫𝐨𝐮𝐩
 

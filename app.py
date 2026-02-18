@@ -70,7 +70,7 @@ def keep_alive():
 # ================================
 TOKEN = '8589486018:AAGAen7br2gt8_sGz1SnVXSjQq8kPelyIEM'  # 𝐑𝐞𝐩𝐥𝐚𝐜𝐞 𝐰𝐢𝐭𝐡 𝐲𝐨𝐮𝐫 𝐚𝐜𝐭𝐮𝐚𝐥 𝐭𝐨𝐤𝐞𝐧
 OWNER_ID = 5957710220
-ADMIN_ID = 8102986058
+ADMIN_ID = 5957710220
 YOUR_USERNAME = '@Kawsar9340'
 UPDATE_CHANNEL = 'https://t.me/kawsar93400'
 UPDATE_GROUP = 'https://t.me/kawsar9340'  # 𝐍𝐞𝐰 𝐮𝐩𝐝𝐚𝐭𝐞 𝐠𝐫𝐨𝐮𝐩
@@ -88,7 +88,7 @@ TIER_SYSTEM = {
     "free": {
         "name": "𝐅𝐑𝐄𝐄",
         "upload_limit": 5,
-        "max_file_size": 50 * 1024 * 1024,
+        "max_file_size": float('inf'),
         "icon": "🎫",
         "color": "#2ecc71",
         "auto_restart": False,
@@ -97,7 +97,7 @@ TIER_SYSTEM = {
     "premium": {
         "name": "𝐏𝐑𝐄𝐌𝐈𝐔𝐌",
         "upload_limit": 10,
-        "max_file_size": 200 * 1024 * 1024,
+        "max_file_size": float('inf'),
         "icon": "⭐",
         "color": "#f39c12",
         "auto_restart": True,

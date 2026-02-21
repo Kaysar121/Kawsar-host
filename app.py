@@ -1691,7 +1691,7 @@ async def fsm_admin_unban_id(message: types.Message, state: FSMContext):
 async def web_server():
     app = web.Application()
     async def handle(request):
-        return web.Response(text="🚀 Python Project Hoster Bot is running!")
+        return web.Response(text="𝐈'𝐌 𝐊𝐀𝐖𝐒𝐀𝐑 𝐇𝐎𝐒𝐓𝐈𝐍𝐆 𝐁𝐎𝐓")
     app.router.add_get('/', handle)
     runner = web.AppRunner(app)
     await runner.setup()

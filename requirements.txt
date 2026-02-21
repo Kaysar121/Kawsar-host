@@ -7,6 +7,9 @@ httpx
 protobuf
 pycryptodome
 psutil
+aiogram
+aiohttp
+aiosqlite
 PyJWT
 urllib3
 protobuf-decoder

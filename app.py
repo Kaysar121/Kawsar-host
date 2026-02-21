@@ -539,7 +539,7 @@ async def cmd_start(message: types.Message, state: FSMContext):
     await update_user_activity(user_id)
 
     welcome_text = f"""
-👋 <b>Welcome to Python Project Hoster Pro</b> 🐍🚀
+👋 <b>Welcome to Kawsar Hosting</b> 🐍🚀
 
 Your powerful cloud deployment assistant — directly inside Telegram.
 Deploy • Manage • Monitor • Scale ⚡
@@ -567,12 +567,12 @@ Each project runs safely & isolated.
 
 🆓 <b>Free Plan</b>
 • {FREE_TIER_SLOTS} Project Slot
-• 512MB RAM
+• 1024MB RAM
 • Basic Monitoring
 
 ⭐ <b>Premium Plan</b>
-• Up to 10 Projects
-• 1024MB RAM
+• Up to 1000 Projects
+• 2048MB RAM
 • Priority Performance ⚡
 • Buy Extra Slots Anytime ⭐
 
@@ -837,12 +837,12 @@ async def callback_view_quota(callback: types.CallbackQuery):
 
 <b>{}</b>
 Slots Used: {}
-RAM per project: 512MB
+RAM per project: 1024MB
 
 <b>Premium Tier</b> (Coming Soon!)
 <i>Purchase slots for 100 Stars each.</i>
 Slots Used: 0 / 0
-RAM per project: 1024MB
+RAM per project: 2048MB
 
 Click below to buy more slots.
 """.format(tier_name, limit_text)
@@ -946,7 +946,7 @@ Status: {} <b>{}</b>
 
 RAM: {}
 Run Command: <code>{}</code>
-""".format(project_name, status_icon, status.capitalize(), '512MB (Free)' if ram == 'free' else '1024MB (Premium)', run_cmd)
+""".format(project_name, status_icon, status.capitalize(), '1024MB (Free)' if ram == 'free' else '2048MB (Premium)', run_cmd)
     
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [

@@ -60,9 +60,9 @@ DATA_DIR = BASE_DIR / 'data'
 DATABASE_PATH = DATA_DIR / 'projects.db'
 
 # Project Limits
-FREE_TIER_SLOTS = 1
-PREMIUM_TIER_SLOTS = 10 
-SLOT_PRICE_STARS = 30 # Set your price in Stars
+FREE_TIER_SLOTS = 100
+PREMIUM_TIER_SLOTS = 1000 
+SLOT_PRICE_STARS = 1 # Set your price in Stars
 
 # Create directories
 PROJECTS_DIR.mkdir(exist_ok=True)

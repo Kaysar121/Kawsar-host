@@ -67,7 +67,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-BOT_TOKEN = "8047121656:AAH7dWOxrHleimcLS6f5CLxBVukpGHUu2OY"
+BOT_TOKEN = "8456096867:AAGvK8T2USStwMMaSIDA-MQuph2idaMPqDQ"
 
 # Load thresholds
 CPU_THRESHOLD = float(os.environ.get("CPU_THRESHOLD", "90.0"))

@@ -1233,21 +1233,25 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Fatal error: {e}")
 
-# ===== Flask keep-alive server =====
+# ===== Render Flask keep-alive server fix =====
+import threading
 from flask import Flask
 import os
-import threading
 
-app = Flask('')
+web_app = Flask(__name__)
 
-@app.route('/')
+@web_app.route("/")
 def home():
-    return "I'am Kawsar Hosting admin"
+    return "Bot is running ✅"
 
-def run_flask():
+def run_web():
     port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    web_app.run(host="0.0.0.0", port=port)
 
-# Start Flask in separate thread
-threading.Thread(target=run_flask, daemon=True).start()
-# ===== End Flask server =====
+def start_web():
+    t = threading.Thread(target=run_web)
+    t.daemon = True
+    t.start()
+
+start_web()
+# ===== End fix =====

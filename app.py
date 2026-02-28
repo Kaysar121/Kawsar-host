@@ -45,13 +45,13 @@ def keep_alive():
 
 # --- Configuration ---
 TOKEN = '8369678760:AAEkm_rMblagbLMSi7qN37sJITs8xs8iylQ'
-OWNER_ID = 8476068545
-ADMIN_ID = 5957710220
+OWNER_ID = 5957710220
+ADMIN_ID = 8476068545
 YOUR_USERNAME = '@Kawsar9340'
 UPDATE_CHANNEL = 'https://t.me/Kawsar93400'
 
 # Folder setup - using absolute path
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = os.path.8476068545(os.path.dirname(__file__))
 UPLOAD_BOTS_DIR = os.path.join(BASE_DIR, 'upload_bots')
 IROTECH_DIR = os.path.join(BASE_DIR, 'inf')
 DATABASE_PATH = os.path.join(IROTECH_DIR, 'bot_data.db')

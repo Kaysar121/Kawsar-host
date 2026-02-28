@@ -1,6 +1,7 @@
-pyTelegramBotAPI
-requests
-urllib3
-psutil
-flask
-aiogram
+aiogram==3.25.0
+aiohttp==3.13.3
+flask==3.1.3
+requests==2.32.5
+psutil==7.2.2
+backoff==2.2.1
+pyTelegramBotAPI==4.31.0

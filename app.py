@@ -15,7 +15,7 @@ from aiogram.exceptions import TelegramBadRequest
 from aiohttp import ClientTimeout, ClientSession
 import backoff
 
-TOKEN = "8369678760:AAEkm_rMblagbLMSi7qN37sJITs8xs8iylQ"
+TOKEN = "8369678760:AAF0Qcz5XPyp_b2o6e6V8YGgrT9OncUoXgQ"
 ADMIN_ID = 5957710220
 STORAGE_DIR = "user_files"
 USERS_FILE = "bot_users.txt"

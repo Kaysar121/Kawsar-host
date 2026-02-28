@@ -51,7 +51,7 @@ YOUR_USERNAME = '@Kawsar9340'
 UPDATE_CHANNEL = 'https://t.me/Kawsar93400'
 
 # Folder setup - using absolute path
-BASE_DIR = os.path.8476068545(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_BOTS_DIR = os.path.join(BASE_DIR, 'upload_bots')
 IROTECH_DIR = os.path.join(BASE_DIR, 'inf')
 DATABASE_PATH = os.path.join(IROTECH_DIR, 'bot_data.db')

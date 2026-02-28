@@ -59,15 +59,14 @@ DATABASE_PATH = os.path.join(IROTECH_DIR, 'bot_data.db')
 # File upload limits
 FREE_USER_LIMIT = 10
 SUBSCRIBED_USER_LIMIT = 20
-ADMIN_LIMIT = 9999
+ADMIN_LIMIT = float('inf')
 OWNER_LIMIT = float('inf')
 
 # Create necessary directories
 os.makedirs(UPLOAD_BOTS_DIR, exist_ok=True)
 os.makedirs(IROTECH_DIR, exist_ok=True)
 
-# Initialize bot
-bot = telebot.TeleBot(TOKEN)
+# Init = telebot.TeleBot(TOKEN)
 
 # --- Data structures ---
 bot_scripts = {}

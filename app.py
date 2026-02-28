@@ -46,7 +46,7 @@ def keep_alive():
 # --- Configuration ---
 TOKEN = '8369678760:AAEkm_rMblagbLMSi7qN37sJITs8xs8iylQ'
 OWNER_ID = 5957710220
-ADMIN_ID = 8476068545
+ADMIN_ID = 5957710220
 YOUR_USERNAME = '@Kawsar9340'
 UPDATE_CHANNEL = 'https://t.me/Kawsar93400'
 

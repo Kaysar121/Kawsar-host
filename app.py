@@ -886,6 +886,7 @@ async def edit_command(message: types.Message):
         await message.answer(f"🔹 *Select a file to edit{page_info}:*",
                              reply_markup=markup)
 
+
 @dp.callback_query(lambda c: c.data.startswith("run_"))
 async def handle_run_callback(callback_query: CallbackQuery):
     try:
@@ -894,49 +895,39 @@ async def handle_run_callback(callback_query: CallbackQuery):
         user_dir = os.path.join(STORAGE_DIR, str(user_id))
         file_path = os.path.join(user_dir, filename)
 
-        # Step 1: Skip dependency installation since they're already installed
         status_msg = await callback_query.message.answer("▶️ Starting script...")
-        await status_msg.edit_text("✅ Dependencies installed successfully.")
+        await status_msg.edit_text("✅ Dependencies ready.")
 
-        # Step 2: Run the Python script
-        process = subprocess.Popen(
-            [sys.executable, filename],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            cwd=user_dir)
-        
-        running_processes.setdefault(user_id, {})[filename] = process
-        file_last_run[f"{user_id}_{filename}"] = time.time()
-        await callback_query.message.answer(f"🚀 Running {filename}...")
         process = subprocess.Popen(
             [sys.executable, os.path.basename(file_path)],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            cwd=user_dir)
+            cwd=user_dir
+        )
+
         running_processes.setdefault(user_id, {})[filename] = process
         file_last_run[f"{user_id}_{filename}"] = time.time()
-        try:
-            await callback_query.message.answer(f"🚀 Running {filename}...")
-        except Exception as e:
-            logging.error(f"Network error while sending message: {e}")
 
-            # Wait a moment to check if process started successfully
-            await asyncio.sleep(2)
-        except Exception as e:
-            await callback_query.message.answer(
-                f"⚠️ Error running script: {str(e)}")
-            return
+        await callback_query.message.answer(f"🚀 Running {filename}...")
+
+        await asyncio.sleep(2)
+
         if process.poll() is not None:
-            # Process terminated immediately
             stdout, stderr = process.communicate()
             error_msg = stderr.decode() if stderr else stdout.decode()
             await callback_query.message.answer(
-                f"⚠️ Script failed to start:\n```\n{error_msg[:1000]}```")
+                f"⚠️ Script failed to start:
+```
+{error_msg[:1000]}
+```"
+            )
             if filename in running_processes.get(user_id, {}):
                 del running_processes[user_id][filename]
+
     except Exception as e:
         await callback_query.message.answer(
-            f"⚠️ Error starting script: {str(e)}")
+            f"⚠️ Error starting script: {str(e)}"
+        )
 
 @dp.callback_query(lambda c: c.data.startswith("stop_"))
 async def handle_stop_callback(callback_query: CallbackQuery):
@@ -1228,12 +1219,11 @@ async def list_command(message: types.Message):
     await message.answer(f"✅ Users with increased file limits:\n{user_list}",
                        reply_markup=create_menu_keyboard(True))
 
+
 async def main():
     try:
         print("Starting bot...")
-        # Initialize dispatcher with bot instance
-        dp.bot = bot
-        # Start polling with better error handling
+        await bot.delete_webhook(drop_pending_updates=True)
         await dp.start_polling(bot, allowed_updates=["message", "callback_query"])
     except Exception as e:
         print(f"Error starting bot: {e}")

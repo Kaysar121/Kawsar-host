@@ -25,7 +25,7 @@ def home():
 def health():
     return {"status": "healthy", "uptime": get_uptime()}
 def run_flask():
-    port = int(os.environ.get("PORT", 8080))
+    port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
 def keep_alive():
     t = Thread(target=run_flask)
@@ -916,10 +916,10 @@ async def handle_run_callback(callback_query: CallbackQuery):
             stdout, stderr = process.communicate()
             error_msg = stderr.decode() if stderr else stdout.decode()
             await callback_query.message.answer(
-                f"⚠️ Script failed to start:
+                f"""⚠️ Script failed to start:
 ```
 {error_msg[:1000]}
-```"
+```"""
             )
             if filename in running_processes.get(user_id, {}):
                 del running_processes[user_id][filename]

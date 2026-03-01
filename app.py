@@ -26,7 +26,7 @@ from threading import Thread
 app = Flask('')
 @app.route('/')
 def home():
-    return "🤖 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 🦁 is Running!"
+    return "🤖 Kawsar_Robot 🦁 is Running!"
 @app.route('/health')
 def health():
     return {"status": "healthy", "uptime": get_uptime()}
@@ -150,9 +150,7 @@ def send_animated_message(chat_id, final_text, animation_type="loading", duratio
             bar = "💚" * i + "🤍" * (steps - i)
             display = f"🚀 𝐋ᴏᴀᴅɪɴɢ... ({percent}%)\n[{bar}] {action_text}..."
             if i == 0:
-                msg = bot.send_message(chat_id, display + "
-
-✨ Powered by Premium UI")
+                msg = bot.send_message(chat_id, display )
             else:
                 try:
                     bot.edit_message_text(display, chat_id, msg.message_id)
@@ -164,15 +162,11 @@ def send_animated_message(chat_id, final_text, animation_type="loading", duratio
         try:
             bot.edit_message_text(final_text, chat_id, msg.message_id, parse_mode='HTML')
         except:
-            bot.send_message(chat_id, final_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+            bot.send_message(chat_id, final_text, parse_mode='HTML')
         return msg
     except Exception as e:
         logger.error(f"Animation error: {e}")
-        return bot.send_message(chat_id, final_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+        return bot.send_message(chat_id, final_text, parse_mode='HTML')
 
 def send_progress_animation(chat_id, action_text, total_steps=4, callback=None):
     """Send progress using new style: 🚀 𝐋ᴏᴀᴅɪɴɢ... + [💚...]"""
@@ -183,9 +177,7 @@ def send_progress_animation(chat_id, action_text, total_steps=4, callback=None):
             bar = "💚" * step + "🤍" * (total_steps - step)
             display = f"🚀 𝐋ᴏᴀᴅɪɴɢ... ({percent}%)\n[{bar}] {action_text}..."
             if step == 0:
-                msg = bot.send_message(chat_id, display + "
-
-✨ Powered by Premium UI")
+                msg = bot.send_message(chat_id, display )
             else:
                 try:
                     bot.edit_message_text(display, chat_id, msg.message_id)
@@ -244,7 +236,7 @@ def create_system_stats_message():
     running_bots = len([k for k, v in bot_scripts.items() if v.get('process') and is_bot_running_check(k)])
     msg = f"""
 
-       📊 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐒𝐓𝐀𝐓𝐒</b> 📊         
+       📊 <b>Kawsar_Robot 𝐒𝐓𝐀𝐓𝐒</b> 📊         
 
  🖥️ <b>𝐂𝐏𝐔 𝐔𝐬𝐚𝐠𝐞:</b> {stats['cpu']}%
  {create_mini_bar(stats['cpu'])}
@@ -541,9 +533,7 @@ def attempt_install_pip(module_name, message):
                     message.chat.id, msg.message_id, parse_mode='HTML'
                 )
             except:
-                bot.send_message(message.chat.id, f"✅ Package {package_name} installed!", parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+                bot.send_message(message.chat.id, f"✅ Package {package_name} installed!", parse_mode='HTML')
             return True
         else:
             error_msg = result.stderr[:500] if result.stderr else result.stdout[:500]
@@ -556,9 +546,7 @@ def attempt_install_pip(module_name, message):
                 pass
             return False
     except subprocess.TimeoutExpired:
-        bot.send_message(message.chat.id, f"⏱️ Installation timed out for {package_name}" + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, f"⏱️ Installation timed out for {package_name}" )
         return False
     except Exception as e:
         logger.error(f"Install error: {e}")
@@ -583,9 +571,7 @@ def attempt_install_npm(module_name, user_folder, message):
         else:
             return False
     except FileNotFoundError:
-        bot.send_message(message.chat.id, "❌ NPM not found! Install Node.js first." + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, "❌ NPM not found! Install Node.js first." )
         return False
     except Exception as e:
         logger.error(f"NPM install error: {e}")
@@ -596,17 +582,13 @@ def run_script(script_path, script_owner_id, user_folder, file_name, message_obj
     """Run Python script with animation"""
     max_attempts = 3
     if attempt > max_attempts:
-        bot.send_message(message_obj.chat.id, f"❌ Failed to run '{file_name}' after {max_attempts} attempts." + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message_obj.chat.id, f"❌ Failed to run '{file_name}' after {max_attempts} attempts." )
         return
     script_key = f"{script_owner_id}_{file_name}"
     logger.info(f"Running script: {script_path} (Attempt {attempt})")
     try:
         if not os.path.exists(script_path):
-            bot.send_message(message_obj.chat.id, f"❌ Script '{file_name}' not found!" + "
-
-✨ Powered by Premium UI")
+            bot.send_message(message_obj.chat.id, f"❌ Script '{file_name}' not found!" )
             return
         check_result = subprocess.run(
             [sys.executable, '-c', f'import ast; ast.parse(open("{script_path}").read())'],
@@ -619,7 +601,7 @@ def run_script(script_path, script_owner_id, user_folder, file_name, message_obj
             return
         terminal_msg = f"""
 
-      🚀 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: STARTING SCRIPT</b> 🚀 
+      🚀 <b>Kawsar_Robot: STARTING SCRIPT</b> 🚀 
 
  📄 File: <code>{file_name[:25]}</code>
  👤 User: {script_owner_id}
@@ -652,7 +634,7 @@ def run_script(script_path, script_owner_id, user_folder, file_name, message_obj
         if process.poll() is None:
             success_msg = f"""
 
-     ✅ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: SCRIPT RUNNING</b> ✅   
+     ✅ <b>Kawsar_Robot: SCRIPT RUNNING</b> ✅   
 
  📄 <b>File:</b> <code>{file_name[:25]}</code>
  🆔 <b>PID:</b> {process.pid}
@@ -662,9 +644,7 @@ def run_script(script_path, script_owner_id, user_folder, file_name, message_obj
             try:
                 bot.edit_message_text(success_msg, message_obj.chat.id, msg.message_id, parse_mode='HTML')
             except:
-                bot.send_message(message_obj.chat.id, success_msg, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+                bot.send_message(message_obj.chat.id, success_msg, parse_mode='HTML')
             log_action(script_owner_id, "SCRIPT_START", f"Started {file_name} (PID: {process.pid})")
         else:
             log_file.close()
@@ -679,7 +659,7 @@ def run_script(script_path, script_owner_id, user_folder, file_name, message_obj
                     return
             error_msg = f"""
 
-     ❌ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: SCRIPT FAILED</b> ❌     
+     ❌ <b>Kawsar_Robot: SCRIPT FAILED</b> ❌     
 
  📄 <b>File:</b> <code>{file_name[:25]}</code>
  ❗ <b>Exit Code:</b> {process.returncode}
@@ -690,35 +670,27 @@ def run_script(script_path, script_owner_id, user_folder, file_name, message_obj
             try:
                 bot.edit_message_text(error_msg, message_obj.chat.id, msg.message_id, parse_mode='HTML')
             except:
-                bot.send_message(message_obj.chat.id, error_msg, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+                bot.send_message(message_obj.chat.id, error_msg, parse_mode='HTML')
             cleanup_script(script_key)
     except Exception as e:
         logger.error(f"Error running script: {e}", exc_info=True)
-        bot.send_message(message_obj.chat.id, f"❌ Error: {str(e + "
-
-✨ Powered by Premium UI")[:200]}")
+        bot.send_message(message_obj.chat.id, f"❌ Error: {str(e )[:200]}")
 
 def run_js_script(script_path, script_owner_id, user_folder, file_name, message_obj, attempt=1):
     """Run JavaScript/Node.js script with animation"""
     max_attempts = 3
     if attempt > max_attempts:
-        bot.send_message(message_obj.chat.id, f"❌ Failed to run '{file_name}' after {max_attempts} attempts." + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message_obj.chat.id, f"❌ Failed to run '{file_name}' after {max_attempts} attempts." )
         return
     script_key = f"{script_owner_id}_{file_name}"
     logger.info(f"Running JS script: {script_path} (Attempt {attempt})")
     try:
         if not os.path.exists(script_path):
-            bot.send_message(message_obj.chat.id, f"❌ Script '{file_name}' not found!" + "
-
-✨ Powered by Premium UI")
+            bot.send_message(message_obj.chat.id, f"❌ Script '{file_name}' not found!" )
             return
         terminal_msg = f"""
 
-      💚 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: STARTING NODE.JS</b> 💚
+      💚 <b>Kawsar_Robot: STARTING NODE.JS</b> 💚
 
  📄 File: <code>{file_name[:25]}</code>
  👤 User: {script_owner_id}
@@ -752,7 +724,7 @@ def run_js_script(script_path, script_owner_id, user_folder, file_name, message_
         if process.poll() is None:
             success_msg = f"""
 
-     ✅ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: NODE.JS RUNNING</b> ✅  
+     ✅ <b>Kawsar_Robot: NODE.JS RUNNING</b> ✅  
 
  📄 <b>File:</b> <code>{file_name[:25]}</code>
  🆔 <b>PID:</b> {process.pid}
@@ -762,9 +734,7 @@ def run_js_script(script_path, script_owner_id, user_folder, file_name, message_
             try:
                 bot.edit_message_text(success_msg, message_obj.chat.id, msg.message_id, parse_mode='HTML')
             except:
-                bot.send_message(message_obj.chat.id, success_msg, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+                bot.send_message(message_obj.chat.id, success_msg, parse_mode='HTML')
         else:
             log_file.close()
             with open(log_file_path, 'r', encoding='utf-8', errors='ignore') as f:
@@ -778,7 +748,7 @@ def run_js_script(script_path, script_owner_id, user_folder, file_name, message_
                     return
             error_msg = f"""
 
-     ❌ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: NODE.JS FAILED</b> ❌    
+     ❌ <b>Kawsar_Robot: NODE.JS FAILED</b> ❌    
 
  📄 <b>File:</b> <code>{file_name[:25]}</code>
  ❗ <b>Exit Code:</b> {process.returncode}
@@ -789,19 +759,13 @@ def run_js_script(script_path, script_owner_id, user_folder, file_name, message_
             try:
                 bot.edit_message_text(error_msg, message_obj.chat.id, msg.message_id, parse_mode='HTML')
             except:
-                bot.send_message(message_obj.chat.id, error_msg, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+                bot.send_message(message_obj.chat.id, error_msg, parse_mode='HTML')
             cleanup_script(script_key)
     except FileNotFoundError:
-        bot.send_message(message_obj.chat.id, "❌ Node.js not found! Install Node.js first." + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message_obj.chat.id, "❌ Node.js not found! Install Node.js first." )
     except Exception as e:
         logger.error(f"Error running JS script: {e}", exc_info=True)
-        bot.send_message(message_obj.chat.id, f"❌ Error: {str(e + "
-
-✨ Powered by Premium UI")[:200]}")
+        bot.send_message(message_obj.chat.id, f"❌ Error: {str(e )[:200]}")
 
 # --- Keyboard Layouts ---
 def get_main_keyboard(user_id):
@@ -858,7 +822,7 @@ def start_command(message):
         return
     welcome_text = f"""
 
-    🤖 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 🦁</b>                 
+    🤖 <b>Kawsar_Robot 🦁</b>                 
 
   👋 𝐖𝐞𝐥𝐜𝐨𝐦𝐞, <b>{message.from_user.first_name}</b>!
 
@@ -874,16 +838,14 @@ def start_command(message):
 𝐔𝐬𝐞 𝐭𝐡𝐞 𝐛𝐮𝐭𝐭𝐨𝐧𝐬 𝐛𝐞𝐥𝐨𝐰 𝐭𝐨 𝐧𝐚𝐯𝐢𝐠𝐚𝐭𝐞! ⬇️
 """
     send_animated_message(message.chat.id, welcome_text, "loading", duration=2)
-    bot.send_message(message.chat.id, "𝐂𝐡𝐨𝐨𝐬𝐞 𝐚𝐧 𝐨𝐩𝐭𝐢𝐨𝐧:", reply_markup=get_main_keyboard(user_id + "
-
-✨ Powered by Premium UI"))
+    bot.send_message(message.chat.id, "𝐂𝐡𝐨𝐨𝐬𝐞 𝐚𝐧 𝐨𝐩𝐭𝐢𝐨𝐧:", reply_markup=get_main_keyboard(user_id ))
 
 @bot.message_handler(commands=['help'])
 def help_command(message):
     """Handle /help command"""
     help_text = """
 
-       📚 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 HELP</b> 📚          
+       📚 <b>Kawsar_Robot HELP</b> 📚          
 
  <b>📤 𝐅𝐢𝐥𝐞 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭:</b>
  • /upload - 𝐔𝐩𝐥𝐨𝐚𝐝 𝐚 𝐟𝐢𝐥𝐞
@@ -906,34 +868,30 @@ def help_command(message):
  • /help - 𝐓𝐡𝐢𝐬 𝐦𝐞𝐬𝐬𝐚𝐠𝐞
 
 """
-    bot.send_message(message.chat.id, help_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+    bot.send_message(message.chat.id, help_text, parse_mode='HTML')
 
 @bot.message_handler(commands=['stats', 'statistics'])
 def stats_command(message):
     """Handle /stats command"""
     user_id = message.from_user.id
-    msg = send_spinner_animation(message.chat.id, "𝐆𝐚𝐭𝐡𝐞𝐫𝐢𝐧𝐠 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐬𝐭𝐚𝐭𝐬...", duration=2)
+    msg = send_spinner_animation(message.chat.id, "𝐆𝐚𝐭𝐡𝐞𝐫𝐢𝐧𝐠 Kawsar_Robot 𝐬𝐭𝐚𝐭𝐬...", duration=2)
     stats_text = create_system_stats_message()
     try:
         bot.edit_message_text(stats_text, message.chat.id, msg.message_id, parse_mode='HTML')
     except:
-        bot.send_message(message.chat.id, stats_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, stats_text, parse_mode='HTML')
 
 @bot.message_handler(commands=['speed'])
 def speed_command(message):
     """Handle /speed command"""
-    msg = send_spinner_animation(message.chat.id, "𝐓𝐞𝐬𝐭𝐢𝐧𝐠 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐬𝐩𝐞𝐞𝐝...", duration=2)
+    msg = send_spinner_animation(message.chat.id, "𝐓𝐞𝐬𝐭𝐢𝐧𝐠 Kawsar_Robot 𝐬𝐩𝐞𝐞𝐝...", duration=2)
     start_time = time.time()
     latency = (time.time() - start_time) * 1000
     cpu = psutil.cpu_percent()
     memory = psutil.virtual_memory().percent
     speed_text = f"""
 
-        ⚡ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐒𝐏𝐄𝐄𝐃</b> ⚡        
+        ⚡ <b>Kawsar_Robot 𝐒𝐏𝐄𝐄𝐃</b> ⚡        
 
   🏓 <b>𝐋𝐚𝐭𝐞𝐧𝐜𝐲:</b> {latency:.2f}𝐦𝐬
   🖥️ <b>𝐂𝐏𝐔:</b> {cpu}%
@@ -946,15 +904,13 @@ def speed_command(message):
     try:
         bot.edit_message_text(speed_text, message.chat.id, msg.message_id, parse_mode='HTML')
     except:
-        bot.send_message(message.chat.id, speed_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, speed_text, parse_mode='HTML')
 
 @bot.message_handler(commands=['running'])
 def running_command(message):
     """Show running bots"""
     user_id = message.from_user.id
-    msg = send_spinner_animation(message.chat.id, "𝐅𝐞𝐭𝐜𝐡𝐢𝐧𝐠 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐛𝐨𝐭𝐬...", duration=1)
+    msg = send_spinner_animation(message.chat.id, "𝐅𝐞𝐭𝐜𝐡𝐢𝐧𝐠 Kawsar_Robot 𝐛𝐨𝐭𝐬...", duration=1)
     running_bots = []
     for script_key, info in bot_scripts.items():
         if is_bot_running_check(script_key):
@@ -970,7 +926,7 @@ def running_command(message):
     if running_bots:
         text = """
 
-      💚 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐁𝐎𝐓𝐒</b> 💚           
+      💚 <b>Kawsar_Robot 𝐁𝐎𝐓𝐒</b> 💚           
 
 """
         for i, bot_info in enumerate(running_bots, 1):
@@ -984,7 +940,7 @@ def running_command(message):
     else:
         text = """
 
-      🔴 <b>𝐍𝐎 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐁𝐎𝐓𝐒</b> 🔴        
+      🔴 <b>𝐍𝐎 Kawsar_Robot 𝐁𝐎𝐓𝐒</b> 🔴        
 
   𝐍𝐨 𝐬𝐜𝐫𝐢𝐩𝐭𝐬 𝐚𝐫𝐞 𝐜𝐮𝐫𝐫𝐞𝐧𝐭𝐥𝐲 𝐫𝐮𝐧𝐧𝐢𝐧𝐠.
   𝐔𝐩𝐥𝐨𝐚𝐝 𝐚 𝐟𝐢𝐥𝐞 𝐚𝐧𝐝 𝐫𝐮𝐧 𝐢𝐭!
@@ -993,9 +949,7 @@ def running_command(message):
     try:
         bot.edit_message_text(text, message.chat.id, msg.message_id, parse_mode='HTML')
     except:
-        bot.send_message(message.chat.id, text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, text, parse_mode='HTML')
 
 @bot.message_handler(commands=['lock'])
 def lock_command(message):
@@ -1009,7 +963,7 @@ def lock_command(message):
     status = "🔒 𝐋𝐎𝐂𝐊𝐄𝐃" if bot_locked else "🔓 𝐔𝐍𝐋𝐎𝐂𝐊𝐄𝐃"
     lock_text = f"""
 
-         🔐 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐒𝐓𝐀𝐓𝐔𝐒</b> 🔐       
+         🔐 <b>Kawsar_Robot 𝐒𝐓𝐀𝐓𝐔𝐒</b> 🔐       
 
   𝐒𝐭𝐚𝐭𝐮𝐬: {status}
   𝐁𝐲: {message.from_user.first_name}
@@ -1034,9 +988,7 @@ def process_broadcast(message):
     if not broadcast_text:
         bot.reply_to(message, "❌ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐬𝐞𝐧𝐝 𝐚 𝐭𝐞𝐱𝐭 𝐦𝐞𝐬𝐬𝐚𝐠𝐞!")
         return
-    progress_msg = bot.send_message(message.chat.id, "📢 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐛𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭..." + "
-
-✨ Powered by Premium UI")
+    progress_msg = bot.send_message(message.chat.id, "📢 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 Kawsar_Robot 𝐛𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭..." )
     success = 0
     failed = 0
     total = len(active_users)
@@ -1044,14 +996,12 @@ def process_broadcast(message):
         try:
             formatted_msg = f"""
 
-      📢 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 🦁 𝐁𝐑𝐎𝐀𝐃𝐂𝐀𝐒𝐓</b> 📢    
+      📢 <b>Kawsar_Robot 🦁 𝐁𝐑𝐎𝐀𝐃𝐂𝐀𝐒𝐓</b> 📢    
 
 {broadcast_text}
 
 """
-            bot.send_message(user_id, formatted_msg, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+            bot.send_message(user_id, formatted_msg, parse_mode='HTML')
             success += 1
         except:
             failed += 1
@@ -1067,7 +1017,7 @@ def process_broadcast(message):
                 pass
     result_text = f"""
 
-     ✅ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐁𝐑𝐎𝐀𝐃𝐂𝐀𝐒𝐓 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐄</b> ✅ 
+     ✅ <b>Kawsar_Robot 𝐁𝐑𝐎𝐀𝐃𝐂𝐀𝐒𝐓 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐄</b> ✅ 
 
   📤 𝐓𝐨𝐭𝐚𝐥: {total}
   ✅ 𝐒𝐮𝐜𝐜𝐞𝐬𝐬: {success}
@@ -1077,9 +1027,7 @@ def process_broadcast(message):
     try:
         bot.edit_message_text(result_text, message.chat.id, progress_msg.message_id, parse_mode='HTML')
     except:
-        bot.send_message(message.chat.id, result_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, result_text, parse_mode='HTML')
 
 @bot.message_handler(commands=['subscribe', 'sub'])
 def subscribe_command(message):
@@ -1103,7 +1051,7 @@ def subscribe_command(message):
     save_subscription(target_user, expiry)
     sub_text = f"""
 
-      ✅ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐒𝐔𝐁𝐒𝐂𝐑𝐈𝐏𝐓𝐈𝐎𝐍</b> ✅   
+      ✅ <b>Kawsar_Robot 𝐒𝐔𝐁𝐒𝐂𝐑𝐈𝐏𝐓𝐈𝐎𝐍</b> ✅   
 
   👤 𝐔𝐬𝐞𝐫: {target_user}
   📅 𝐃𝐚𝐲𝐬: {days}
@@ -1112,9 +1060,7 @@ def subscribe_command(message):
 """
     send_animated_message(message.chat.id, sub_text, "loading", duration=1)
     try:
-        bot.send_message(target_user, f"🎉 𝐘𝐨𝐮'𝐯𝐞 𝐛𝐞𝐞𝐧 𝐬𝐮𝐛𝐬𝐜𝐫𝐢𝐛𝐞𝐝 𝐟𝐨𝐫 {days} 𝐝𝐚𝐲𝐬 𝐛𝐲 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑!" + "
-
-✨ Powered by Premium UI")
+        bot.send_message(target_user, f"🎉 𝐘𝐨𝐮'𝐯𝐞 𝐛𝐞𝐞𝐧 𝐬𝐮𝐛𝐬𝐜𝐫𝐢𝐛𝐞𝐝 𝐟𝐨𝐫 {days} 𝐝𝐚𝐲𝐬 𝐛𝐲 Kawsar_Robot!" )
     except:
         pass
 
@@ -1129,9 +1075,7 @@ def handle_text(message):
         bot.reply_to(message, "🔒 𝐁𝐨𝐭 𝐢𝐬 𝐥𝐨𝐜𝐤𝐞𝐝!")
         return
     if text == "📢 Updates Channel":
-        bot.send_message(message.chat.id, f"📢 𝐉𝐨𝐢𝐧 𝐨𝐮𝐫 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐮𝐩𝐝𝐚𝐭𝐞𝐬:\n{UPDATE_CHANNEL}" + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, f"📢 𝐉𝐨𝐢𝐧 𝐨𝐮𝐫 Kawsar_Robot 𝐮𝐩𝐝𝐚𝐭𝐞𝐬:\n{UPDATE_CHANNEL}" )
     elif text == "📤 Upload File":
         handle_upload_request(message)
     elif text == "📂 Check Files":
@@ -1151,9 +1095,7 @@ def handle_text(message):
     elif text == "👑 Admin Panel":
         show_admin_panel(message)
     elif text == "📞 Contact Owner":
-        bot.send_message(message.chat.id, f"📞 𝐂𝐨𝐧𝐭𝐚𝐜𝐭: {YOUR_USERNAME}" + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, f"📞 𝐂𝐨𝐧𝐭𝐚𝐜𝐭: {YOUR_USERNAME}" )
 
 def handle_upload_request(message):
     """Handle file upload request"""
@@ -1165,7 +1107,7 @@ def handle_upload_request(message):
         return
     upload_text = f"""
 
-       📤 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: FILE UPLOAD</b> 📤   
+       📤 <b>Kawsar_Robot: FILE UPLOAD</b> 📤   
 
   𝐒𝐞𝐧𝐝 𝐲𝐨𝐮𝐫 𝐟𝐢𝐥𝐞 𝐧𝐨𝐰!
 
@@ -1177,19 +1119,17 @@ def handle_upload_request(message):
   📁 𝐅𝐢𝐥𝐞𝐬: {current_count}/{int(limit) if limit != float('inf') else '∞'}
 
 """
-    bot.send_message(message.chat.id, upload_text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+    bot.send_message(message.chat.id, upload_text, parse_mode='HTML')
 
 def show_user_files(message):
     """Show user's files with actions"""
     user_id = message.from_user.id
-    msg = send_spinner_animation(message.chat.id, "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐟𝐢𝐥𝐞𝐬...", duration=1)
+    msg = send_spinner_animation(message.chat.id, "𝐋𝐨𝐚𝐝𝐢𝐧𝐠 Kawsar_Robot 𝐟𝐢𝐥𝐞𝐬...", duration=1)
     files = user_files.get(user_id, [])
     if not files:
         text = """
 
-       📂 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: YOUR FILES</b> 📂   
+       📂 <b>Kawsar_Robot: YOUR FILES</b> 📂   
 
   𝐘𝐨𝐮 𝐡𝐚𝐯𝐞𝐧'𝐭 𝐮𝐩𝐥𝐨𝐚𝐝𝐞𝐝 𝐚𝐧𝐲 𝐟𝐢𝐥𝐞𝐬 𝐲𝐞𝐭!
 
@@ -1199,13 +1139,11 @@ def show_user_files(message):
         try:
             bot.edit_message_text(text, message.chat.id, msg.message_id, parse_mode='HTML')
         except:
-            bot.send_message(message.chat.id, text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+            bot.send_message(message.chat.id, text, parse_mode='HTML')
         return
     text = """
 
-       📂 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: YOUR FILES</b> 📂   
+       📂 <b>Kawsar_Robot: YOUR FILES</b> 📂   
 
 """
     markup = types.InlineKeyboardMarkup(row_width=2)
@@ -1222,9 +1160,7 @@ def show_user_files(message):
     try:
         bot.edit_message_text(text, message.chat.id, msg.message_id, parse_mode='HTML', reply_markup=markup)
     except:
-        bot.send_message(message.chat.id, text, parse_mode='HTML', reply_markup=markup + "
-
-✨ Powered by Premium UI")
+        bot.send_message(message.chat.id, text, parse_mode='HTML', reply_markup=markup)
 
 def show_subscriptions(message):
     """Show subscription management (Admin only)"""
@@ -1236,7 +1172,7 @@ def show_subscriptions(message):
                    if data['expiry'] > datetime.now()}
     text = f"""
 
-     💳 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: SUBSCRIPTIONS</b> 💳    
+     💳 <b>Kawsar_Robot: SUBSCRIPTIONS</b> 💳    
 
   𝐀𝐜𝐭𝐢𝐯𝐞: {len(active_subs)}
   𝐓𝐨𝐭𝐚𝐥 𝐄𝐯𝐞𝐫: {len(user_subscriptions)}
@@ -1250,9 +1186,7 @@ def show_subscriptions(message):
   <b>𝐀𝐝𝐝 𝐬𝐮𝐛:</b> /subscribe &lt;id&gt; &lt;days&gt;
 
 """
-    bot.send_message(message.chat.id, text, parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+    bot.send_message(message.chat.id, text, parse_mode='HTML')
 
 def show_admin_panel(message):
     """Show admin panel"""
@@ -1262,7 +1196,7 @@ def show_admin_panel(message):
         return
     admin_text = f"""
 
-       👑 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: ADMIN PANEL</b> 👑   
+       👑 <b>Kawsar_Robot: ADMIN PANEL</b> 👑   
 
   <b>📊 𝐒𝐭𝐚𝐭𝐢𝐬𝐭𝐢𝐜𝐬:</b>
   • 𝐓𝐨𝐭𝐚𝐥 𝐔𝐬𝐞𝐫𝐬: {len(active_users)}
@@ -1288,9 +1222,7 @@ def show_admin_panel(message):
         types.InlineKeyboardButton("📊 𝐅𝐮𝐥𝐥 𝐒𝐭𝐚𝐭𝐢𝐬𝐭𝐢𝐜𝐬", callback_data="admin_fullstats"),
         types.InlineKeyboardButton("📋 𝐕𝐢𝐞𝐰 𝐋𝐨𝐠𝐬", callback_data="admin_logs")
     )
-    bot.send_message(message.chat.id, admin_text, parse_mode='HTML', reply_markup=markup + "
-
-✨ Powered by Premium UI")
+    bot.send_message(message.chat.id, admin_text, parse_mode='HTML', reply_markup=markup)
 
 # --- File Upload Handler ---
 @bot.message_handler(content_types=['document'])
@@ -1311,7 +1243,7 @@ def handle_document(message):
         return
     upload_text = f"""
 
-      📤 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: UPLOADING</b> 📤     
+      📤 <b>Kawsar_Robot: UPLOADING</b> 📤     
 
   📄 𝐅𝐢𝐥𝐞: <code>{file_name[:25]}</code>
   📦 𝐒𝐢𝐳𝐞: {format_size(file_size)}
@@ -1381,9 +1313,7 @@ def handle_document(message):
             bot.edit_message_text(success_text, message.chat.id, progress_msg.message_id,
                                   parse_mode='HTML', reply_markup=markup)
         except:
-            bot.send_message(message.chat.id, success_text, parse_mode='HTML', reply_markup=markup + "
-
-✨ Powered by Premium UI")
+            bot.send_message(message.chat.id, success_text, parse_mode='HTML', reply_markup=markup)
     except Exception as e:
         logger.error(f"Upload error: {e}", exc_info=True)
         try:
@@ -1455,7 +1385,7 @@ def show_file_actions(call, file_name):
     status = "💚 𝐑𝐮𝐧𝐧𝐢𝐧𝐠" if is_running else "🔴 𝐒𝐭𝐨𝐩𝐩𝐞𝐝"
     text = f"""
 
-       📄 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: FILE</b> 📄         
+       📄 <b>Kawsar_Robot: FILE</b> 📄         
 
   {type_icon} <b>𝐍𝐚𝐦𝐞:</b> <code>{file_name[:25]}</code>
   📁 <b>𝐓𝐲𝐩𝐞:</b> {file_type.upper()}
@@ -1467,9 +1397,7 @@ def show_file_actions(call, file_name):
         bot.edit_message_text(text, call.message.chat.id, call.message.message_id,
                               parse_mode='HTML', reply_markup=markup)
     except:
-        bot.send_message(call.message.chat.id, text, parse_mode='HTML', reply_markup=markup + "
-
-✨ Powered by Premium UI")
+        bot.send_message(call.message.chat.id, text, parse_mode='HTML', reply_markup=markup)
     bot.answer_callback_query(call.id)
 
 def run_user_script(call, file_name):
@@ -1491,9 +1419,7 @@ def run_user_script(call, file_name):
         threading.Thread(target=run_js_script,
                          args=(script_path, user_id, user_folder, file_name, call.message)).start()
     else:
-        bot.send_message(call.message.chat.id, "❌ 𝐔𝐧𝐬𝐮𝐩𝐩𝐨𝐫𝐭𝐞𝐝 𝐭𝐲𝐩𝐞!" + "
-
-✨ Powered by Premium UI")
+        bot.send_message(call.message.chat.id, "❌ 𝐔𝐧𝐬𝐮𝐩𝐩𝐨𝐫𝐭𝐞𝐝 𝐭𝐲𝐩𝐞!" )
 
 def stop_user_script(call, file_name):
     """Stop a running script"""
@@ -1505,7 +1431,7 @@ def stop_user_script(call, file_name):
     bot.answer_callback_query(call.id, "🛑 𝐒𝐭𝐨𝐩𝐩𝐢𝐧𝐠...")
     stop_text = f"""
 
-       🛑 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: STOPPING</b> 🛑     
+       🛑 <b>Kawsar_Robot: STOPPING</b> 🛑     
 
   📄 <code>{file_name[:25]}</code>
   ⏳ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐰𝐚𝐢𝐭...
@@ -1522,7 +1448,7 @@ def stop_user_script(call, file_name):
         time.sleep(1)
         success_text = f"""
 
-       ✅ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: STOPPED</b> ✅      
+       ✅ <b>Kawsar_Robot: STOPPED</b> ✅      
 
   📄 <code>{file_name[:25]}</code>
   ✅ 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐬𝐭𝐨𝐩𝐩𝐞𝐝!
@@ -1537,9 +1463,7 @@ def stop_user_script(call, file_name):
             bot.edit_message_text(success_text, call.message.chat.id, call.message.message_id,
                                   parse_mode='HTML', reply_markup=markup)
         except:
-            bot.send_message(call.message.chat.id, success_text, parse_mode='HTML', reply_markup=markup + "
-
-✨ Powered by Premium UI")
+            bot.send_message(call.message.chat.id, success_text, parse_mode='HTML', reply_markup=markup)
         log_action(user_id, "SCRIPT_STOP", f"Stopped {file_name}")
 
 def delete_user_file(call, file_name):
@@ -1550,7 +1474,7 @@ def delete_user_file(call, file_name):
         return
     confirm_text = f"""
 
-      ⚠️ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: DELETE?</b> ⚠️      
+      ⚠️ <b>Kawsar_Robot: DELETE?</b> ⚠️      
 
   𝐀𝐫𝐞 𝐲𝐨𝐮 𝐬𝐮𝐫𝐞?
   📄 <code>{file_name[:25]}</code>
@@ -1577,7 +1501,7 @@ def confirm_delete_file(call, file_name):
     file_path = os.path.join(user_folder, file_name)
     delete_text = f"""
 
-       🗑️ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: DELETING</b> 🗑️     
+       🗑️ <b>Kawsar_Robot: DELETING</b> 🗑️     
 
   📄 <code>{file_name[:25]}</code>
   ⏳ 𝐏𝐥𝐞𝐚𝐬𝐞 𝐰𝐚𝐢𝐭...
@@ -1596,7 +1520,7 @@ def confirm_delete_file(call, file_name):
             time.sleep(1)
             success_text = f"""
 
-       ✅ <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: DELETED</b> ✅       
+       ✅ <b>Kawsar_Robot: DELETED</b> ✅       
 
   📄 <code>{file_name[:25]}</code>
   ✅ 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐝𝐞𝐥𝐞𝐭𝐞𝐝!
@@ -1608,9 +1532,7 @@ def confirm_delete_file(call, file_name):
                 bot.edit_message_text(success_text, call.message.chat.id, call.message.message_id,
                                       parse_mode='HTML', reply_markup=markup)
             except:
-                bot.send_message(call.message.chat.id, success_text, parse_mode='HTML', reply_markup=markup + "
-
-✨ Powered by Premium UI")
+                bot.send_message(call.message.chat.id, success_text, parse_mode='HTML', reply_markup=markup)
             bot.answer_callback_query(call.id, "✅ 𝐃𝐞𝐥𝐞𝐭𝐞𝐝!")
     except Exception as e:
         bot.answer_callback_query(call.id, f"❌ 𝐄𝐫𝐫𝐨𝐫: {str(e)[:30]}")
@@ -1628,9 +1550,7 @@ def download_user_file(call, file_name):
         with open(file_path, 'rb') as f:
             bot.send_document(call.message.chat.id, f, caption=f"📄 {file_name}")
     except Exception as e:
-        bot.send_message(call.message.chat.id, f"❌ 𝐄𝐫𝐫𝐨𝐫: {str(e + "
-
-✨ Powered by Premium UI")[:100]}")
+        bot.send_message(call.message.chat.id, f"❌ 𝐄𝐫𝐫𝐨𝐫: {str(e )[:100]}")
 
 def show_script_logs(call, file_name):
     """Show logs for a script"""
@@ -1647,7 +1567,7 @@ def show_script_logs(call, file_name):
                 logs = "𝐍𝐨 𝐨𝐮𝐭𝐩𝐮𝐭 𝐲𝐞𝐭..."
         log_text = f"""
 
-       📋 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: LOGS</b> 📋         
+       📋 <b>Kawsar_Robot: LOGS</b> 📋         
 
  📄 <code>{file_name[:25]}</code>
 
@@ -1696,7 +1616,7 @@ def stop_all_bots(call):
     if user_id != OWNER_ID and user_id not in admin_ids:
         bot.answer_callback_query(call.id, "❌ 𝐀𝐝𝐦𝐢𝐧 𝐨𝐧𝐥𝐲!")
         return
-    bot.answer_callback_query(call.id, "🛑 𝐒𝐭𝐨𝐩𝐩𝐢𝐧𝐠 𝐚𝐥𝐥 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐛𝐨𝐭𝐬...")
+    bot.answer_callback_query(call.id, "🛑 𝐒𝐭𝐨𝐩𝐩𝐢𝐧𝐠 𝐚𝐥𝐥 Kawsar_Robot 𝐛𝐨𝐭𝐬...")
     stopped = 0
     for script_key in list(bot_scripts.keys()):
         try:
@@ -1706,9 +1626,7 @@ def stop_all_bots(call):
             stopped += 1
         except:
             pass
-    bot.send_message(call.message.chat.id, f"✅ 𝐒𝐭𝐨𝐩𝐩𝐞𝐝 {stopped} 𝐛𝐨𝐭𝐬!" + "
-
-✨ Powered by Premium UI")
+    bot.send_message(call.message.chat.id, f"✅ 𝐒𝐭𝐨𝐩𝐩𝐞𝐝 {stopped} 𝐛𝐨𝐭𝐬!" )
 
 def refresh_admin_panel(call):
     """Refresh admin panel stats"""
@@ -1741,21 +1659,19 @@ def show_admin_logs(call):
         logs = c.fetchall()
         conn.close()
         if logs:
-            text = "📋 <b>𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑: RECENT LOGS</b>\n"
+            text = "📋 <b>Kawsar_Robot: RECENT LOGS</b>\n"
             for log in logs:
                 text += f"👤 {log[0]} | {log[1]}\n{log[2][:30]}...\n🕐 {log[3][:16]}\n"
         else:
             text = "📋 𝐍𝐨 𝐥𝐨𝐠𝐬."
-        bot.send_message(call.message.chat.id, text[:4000], parse_mode='HTML' + "
-
-✨ Powered by Premium UI")
+        bot.send_message(call.message.chat.id, text[:4000], parse_mode='HTML')
     except Exception as e:
         bot.answer_callback_query(call.id, f"❌ 𝐄𝐫𝐫𝐨𝐫: {str(e)[:30]}")
 
 # --- Cleanup on Exit ---
 def cleanup_on_exit():
     """Cleanup running processes on exit"""
-    logger.info("𝐂𝐥𝐞𝐚𝐧𝐢𝐧𝐠 𝐮𝐩 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑...")
+    logger.info("𝐂𝐥𝐞𝐚𝐧𝐢𝐧𝐠 𝐮𝐩 Kawsar_Robot...")
     for script_key in list(bot_scripts.keys()):
         try:
             script_info = bot_scripts[script_key]
@@ -1769,7 +1685,7 @@ atexit.register(cleanup_on_exit)
 def main():
     """Main function to run the bot"""
     logger.info("=" * 50)
-    logger.info("🤖 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 🦁 𝐁𝐨𝐭...")
+    logger.info("🤖 𝐒𝐭𝐚𝐫𝐭𝐢𝐧𝐠 Kawsar_Robot 🦁 𝐁𝐨𝐭...")
     logger.info(f"📁 𝐁𝐚𝐬𝐞 𝐃𝐢𝐫: {BASE_DIR}")
     logger.info(f"📁 𝐔𝐩𝐥𝐨𝐚𝐝 𝐃𝐢𝐫: {UPLOAD_BOTS_DIR}")
     logger.info(f"💾 𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞: {DATABASE_PATH}")
@@ -1786,7 +1702,7 @@ def main():
             logger.error("𝐑𝐞𝐚𝐝 𝐭𝐢𝐦𝐞𝐨𝐮𝐭! 𝐑𝐞𝐭𝐫𝐲𝐢𝐧𝐠...")
             time.sleep(5)
         except Exception as e:
-            logger.error(f"𝐄𝐗𝐔 𝐂𝐎𝐃𝐄𝐑 𝐞𝐫𝐫𝐨𝐫: {e}", exc_info=True)
+            logger.error(f"Kawsar_Robot 𝐞𝐫𝐫𝐨𝐫: {e}", exc_info=True)
             time.sleep(5)
 
 if __name__ == "__main__":

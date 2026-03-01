@@ -33,7 +33,7 @@ def keep_alive():
 
 # ================== BOT CONFIG ==================
 
-TOKEN = "8369678760:AAF0Qcz5XPyp_b2o6e6V8YGgrT9OncUoXgQ"
+TOKEN = "8369678760:AAHws99dSQBPlkI88RIoTSsb141wNNG3K7M"
 ADMIN_ID = 5957710220
 
 bot = Bot(token=TOKEN)
